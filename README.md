@@ -1,0 +1,2 @@
+# StaticWickedQuiz
+Quiz for Hackathon
