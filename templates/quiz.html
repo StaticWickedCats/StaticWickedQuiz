@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- flash messages -->
+    <section>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                        <h4 class="flash_message">{{ message }}</h4>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
+</body>
+</html>
