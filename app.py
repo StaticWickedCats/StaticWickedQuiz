@@ -19,7 +19,8 @@ mongo = PyMongo(app)
 #activeQuizes = []
 
 @app.route("/") 
-def home():
+@app.route("/index")
+def index():
     famous_irish_people = mongo.db.famous_irish_people.find()
 
     
@@ -39,20 +40,46 @@ def create_quiz():
             #activeQuizes.append(request.form.get("quizname"), )
             mongo.db.activeQuizes.insert_one(name)
             flash("Quiz Successfully Added " + request.form.get("quizname") + time)
-            return redirect(url_for("home"))
+            return redirect(url_for("index"))
 
 
-@app.route("/quiz/<quizid>")
-def quiz(quizid):
+# ---------------------------------------------------------------------------------------------------------
+@app.route("/get_leaderboard")
+def get_leaderboard():
+    leaderboard = list(mongo.db.leaderboard.find().sort("team_score", -1))
+    return render_template("leaderboard.html", leaderboard=leaderboard)
 
 
-    quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
+# @app.route("/create_leaderboard")
+# def create_leaderboard():
 
-    flash(quiz)
+#     score = {
+#         "team_name": request.form.get("team_name"),
+#         "team_score": request.form.get("team_score")
+#     }
+
+#     leaderboard = list(mongo.db.leaderboard.find().sort("team_score", -1))
+#     return render_template("leaderboard.html", leaderboard=leaderboard)
+
+
+
+
+# ---------------------------------------------------------------------------------------------------------
+
+
+
+
+# @app.route("/quiz/<quizid>")
+# def quiz(quizid):
+
+
+#     quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
+
+#     flash(quiz)
 
     
-    #post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    return render_template("quiz.html")
+#     #post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+#     return render_template("quiz.html")
 
 
 

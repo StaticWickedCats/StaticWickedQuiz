@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">team</th>
+            <th scope="col">score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for team in leaderboard %}
+        <tr>
+            <td>{{ leaderboard.team_name }}</td>
+            <td>{{ leaderboard.team_score }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
