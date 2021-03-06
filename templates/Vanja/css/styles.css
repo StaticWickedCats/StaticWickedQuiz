@@ -183,6 +183,15 @@ p {
     border-color: #ff914d;  
 }
 
+/*---------------------------- Score Page (score.html) Body Content -----------------------------*/
+.score-box {
+    background-color: #2aa167;
+    height: 140%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 /*---------------------------- Footer -----------------------------*/
 footer {
     position: fixed;
