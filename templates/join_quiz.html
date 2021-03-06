@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Join Quiz</h1>
+<form class="form-format" method="POST" action="{{url_for('create_quiz') }}">
+
+        <input id="quizURL" name="quizURL" type="text" placeholder="Quiz URL:" class="validate form-input" title="Only 15 character or less" required/>
+        <input id="teamName" name="teamName" type="text" placeholder="Team name:" class="validate form-input" title="Only 15 character or less" required/>
+        <button type="submit" class="form-submit">Make a Quiz <i class="fas fa-sign-in-alt"></i></button>
+
+</form>
+{% endblock %}
