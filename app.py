@@ -50,16 +50,6 @@ def get_leaderboard():
     return render_template("leaderboard.html", leaderboard=leaderboard)
 
 
-# @app.route("/create_leaderboard")
-# def create_leaderboard():
-
-#     score = {
-#         "team_name": request.form.get("team_name"),
-#         "team_score": request.form.get("team_score")
-#     }
-
-#     leaderboard = list(mongo.db.leaderboard.find().sort("team_score", -1))
-#     return render_template("leaderboard.html", leaderboard=leaderboard)
 
 
 
