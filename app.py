@@ -1,4 +1,4 @@
-import os 
+import os
 from flask import (
     Flask, flash, render_template, redirect,request, url_for)
 from flask_pymongo import PyMongo
@@ -17,9 +17,8 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
-#activeQuizes = []
+@app.route("/")
 
-@app.route("/") 
 @app.route("/index")
 def index():
     famous_irish_people = mongo.db.famous_irish_people.find()
@@ -38,56 +37,21 @@ def edit_quiz():
     if request.method == "POST":
         selectedQuizName = request.form.get("quizURL")
         selectedTeamName = request.form.get("teamName")
-        
+
         if mongo.db.activeQuizes.find({"quizname": selectedQuizName}).count() < 1:
             flash("Quiz doesn't exist")
             return redirect(url_for("join_quiz"))
+        elif mongo.db.activeQuizes.find({ "participants": {selectedTeamName: {"score":0}}}).count() > 0:
+            flash("Pick a new team name, name taken")
+            return redirect(url_for("join_quiz"))
         else:
-            #quiz = mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})
-            #test5 = mongo.db.activeQuizes.find({"quizname": selectedQuizName})
-            #print (test5)
-                #pick another team name 
-            #else 
-                #update quiz to add team name 
-
-            #mongo.db.activeQuizes.find({awards: {$elemMatch: {award:'National Medal', year:1975}}}).count() > 0:
-            #db.users.find({awards: {$elemMatch: {award:'National Medal', year:1975}}})
-            #quiz = mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})
             name = {
                 "quizname": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["quizname"],
-                "date_posted":  mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["date_posted"],
-
-
-                #"partcipants": mongo.db.activeQuizes.update({"quizname": selectedQuizName}, {$set: {Score:89}})
-                    #{"quizname": selectedQuizName})["partcipants"],
-                #db.demo401.update({_id: 1001}, {$set: {Score:89}})
-                #{
-                #        request.form.get("teamName"): {
-                #            "score": 0
-                #        }
-                #    },
-
-
-                "question1": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["question1"],
-                "question2": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["question2"],
-                "question3": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["question3"],
-                "question4": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["question4"],
-                "question5": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["question5"],
-                "question6": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["question6"],
-                "question7": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["question7"],
-                "question8": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["question8"]
+                "score" : 0
             }
-            #mongo.db.activeQuizes.update_one({"quizname": selectedQuizName}, name)
-            #db.test_invoice.update({user_id : 123456 , "items.item_name":"my_item_one"} , {$inc: {"items.$.price": 10}})
-            mongo.db.activeQuizes.update_one({"quizname": selectedQuizName }, {$set: {"partcipants":selectedTeamName} })
-            #({selectedQuizName: {"partcipants": selectedTeamName}})
+            mongo.db.activeQuizes.update_one({"quizname" : selectedQuizName}, { "$push": {"participants" : {selectedQuizName: {"score":0}}}})
             flash("Team Name Added ")
             return redirect(url_for("join_quiz"))
-
-
-        #else: 
-            #flash("Tean Name already taken")
-            #return redirect(url_for("join_quiz"))
 
     return redirect(url_for("join_quiz"))
 
@@ -121,15 +85,15 @@ def create_quiz():
 
                 flash("Quiz Name already taken")
                 return redirect(url_for("make_quiz"))
-            else: 
+            else:
                 name = {
                     "quizname": request.form.get("quizName"),
                     "date_posted":  datetime.datetime.now(),
-                    "partcipants": {
+                    "participants": [{
                         request.form.get("teamName"): {
                             "score": 0
                         }
-                    },
+                    }],
                     "question1": question1,
                     "question2": question2,
                     "question3": question3,
@@ -149,20 +113,11 @@ def create_quiz():
 def join():
     return redirect(url_for("index"))
 
-# ---------------------------------------------------------------------------------------------------------
+
 @app.route("/get_leaderboard")
 def get_leaderboard():
     leaderboard = list(mongo.db.leaderboard.find().sort("team_score", -1))
     return render_template("leaderboard.html", leaderboard=leaderboard)
-
-
-
-
-
-
-# ---------------------------------------------------------------------------------------------------------
-
-
 
 
 # @app.route("/quiz/<quizid>")
@@ -173,7 +128,7 @@ def get_leaderboard():
 
 #     flash(quiz)
 
-    
+
 #     #post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
 #     return render_template("quiz.html")
 
