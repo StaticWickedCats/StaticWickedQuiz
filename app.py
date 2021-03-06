@@ -4,6 +4,7 @@ from flask import (
 from flask_pymongo import PyMongo
 import datetime
 from bson.objectid import ObjectId
+import random
 
 if os.path.exists("env.py"):
     import env
@@ -22,20 +23,27 @@ mongo = PyMongo(app)
 @app.route("/index")
 def index():
     famous_irish_people = mongo.db.famous_irish_people.find()
-
-    
-
-
     return render_template("index.html", famous_irish_people=famous_irish_people)
 
 
 @app.route("/create_quiz", methods=["POST"])
 def create_quiz():
+
+    famous_irish_people_count = mongo.db.famous_irish_people.count()
+    geography_count = mongo.db.geography.count()
+    history_count = mongo.db.history.count()
+    music_count = mongo.db.music.count()
+    sports_count = mongo.db.sports.count()
+    st_patricks_day_count = mongo.db.st_patricks_day.count()
+    question1 = mongo.db.famous_irish_people.find()[random.randrange(famous_irish_people_count)]
+
+
     if request.method == "POST":
             time = str(datetime.datetime.now())
             name = {
                 "quizname": request.form.get("quizname"),
                 "date_posted":  datetime.datetime.now(),
+                "question1": question1
             }
             #activeQuizes.append(request.form.get("quizname"), )
             mongo.db.activeQuizes.insert_one(name)
