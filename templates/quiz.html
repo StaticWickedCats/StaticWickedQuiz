@@ -1,16 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <!-- flash messages -->
-    <section>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                        <h4 class="flash_message">{{ message }}</h4>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </section>
+<form class="form-format" method="POST" action="{{url_for('create_quiz') }}">
+
+    <input id="quizname" name="quizname" type="text" placeholder="Quiz name:" class="validate form-input"
+        title="Only 15 character or less" required />
+    <button type="submit" class="form-submit">Make a Quiz <i class="fas fa-sign-in-alt"></i></button>
+
+</form>
+
+<!-- flash messages -->
+<section>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <h4 class="flash_message">{{ message }}</h4>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</section>
+
+{% for question in famous_irish_people %}
+{{ question.question }}
+{{ question.answer }}
+{% endfor %}
 
 
 {% endblock %}
