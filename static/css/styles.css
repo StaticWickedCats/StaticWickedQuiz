@@ -42,6 +42,11 @@ p {
     text-shadow: 0 0 8px #9D3BE1, 0 0 8px #EE3EC9;
 }
 
+/*Try and put all page content within this class as this is the height of the footer and so ensures that content is not hidden behind the footer*/
+.container-fluid {
+    padding-bottom: 60px; 
+}
+
 /*----------------------------------- Navbar------------------------------*/
 .navbar {
     padding: 10px;
@@ -64,11 +69,6 @@ p {
 
 .bwc-nav-list a:hover {
     text-shadow: 0 0 15px #C181ED, 0 0 15px #F87CDE;
-}
-
-/*Try and put all page content within this class as this is the height of the footer and so ensures that content is not hidden behind the footer*/
-.container-fluid {
-    padding-bottom: 60px; 
 }
 
 /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/
@@ -109,7 +109,7 @@ p {
 
 #start-quiz-button {
     background: url(../images/start-quiz-image.png) no-repeat scroll center;
-    background-size: 175%;
+    background-size: 150%;
     height: 450px;
     width: 450px;
 }
@@ -123,17 +123,81 @@ p {
 
 #join-quiz-button {
     background: url(../images/join-quiz-image.png) no-repeat scroll center;
-    background-size: 125%;
+    background-size: 110%;
     height: 450px;
     width: 450px;
 }
 
 #start-quiz-button:hover {
-    background-size: 180%;
+    background-size: 160%;
 }
 
 #join-quiz-button:hover {
-    background-size: 130%;
+    background-size: 115%;
+}
+
+/*---------------------------- quiz page (quiz.html) Body Content -----------------------------*/
+
+#question-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10vh 0vh;
+}
+
+#question-box {
+    background-color: #2AA167;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#question-text h1 {
+    text-align: center;
+    font-size: 3.5em;
+    margin: 20px 10px;
+}
+
+#question-answers {
+    width: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#answer-box1,
+#answer-box2,
+#answer-box3,
+#answer-box4 {
+    height: 17vh;
+    width: 35%;
+    margin: 15px;
+    text-align: center;
+}
+
+#answer-box1 {
+    background-color: #FE904C;
+}
+
+#answer-box2 {
+    background-color: #EE3EC9;
+}
+
+#answer-box3 {
+    background-color: #9D3AE1;
+}
+
+#answer-box4 {
+    background-color: #38B5FF;
+}
+
+#question-time {
+    text-align: center;
+    font-size: 0.75em;
+    margin: 20px 10px;
 }
 
 /*---------------------------- Footer -----------------------------*/
@@ -188,6 +252,45 @@ footer {
     .logo-box {
     height: 27rem;
     }
+
+    /*---------------------------- quiz Page (quiz.html) Body Content -----------------------------*/ 
+    #question-text h1 {
+    font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 770px ) { 
+    /*---------------------------- quiz Page (quiz.html) Body Content -----------------------------*/ 
+    #question-box {
+    width: 100%;
+    }
+
+    #question-answers {
+    width: 70vh;
+    }
+}
+
+@media screen and (max-width: 450px ) { 
+    /*---------------------------- quiz Page (quiz.html) Body Content -----------------------------*/ 
+    #question-answers {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    }
+
+    #question-text h1 {
+    font-size: 1.75em;
+    }
+
+    #answer-box1,
+    #answer-box2,
+    #answer-box3,
+    #answer-box4 {
+        height: 17vh;
+        width: 75%;
+    }
 }
 
 @media screen and (max-width: 376px ){ 
@@ -200,4 +303,3 @@ footer {
         font-size: 2em;
     }
 }
-
