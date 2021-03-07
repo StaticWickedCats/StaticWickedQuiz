@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<!--Content-->
 <div class="container-fluid" id="question-page">
             <div id="question-box">
 
@@ -27,11 +28,16 @@
                 </div>
 
 
+
                 <div id="question-time">
                     <h2>00:00</h2>
                 </div>
             </div>
         </div>
+
+        <!--/Content-->
+{% endblock %}
+
 
         <script>
             var question1 = '{{ quiz.questions.question1.question }}'
@@ -81,3 +87,4 @@
 
 
 {% endblock %}
+

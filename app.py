@@ -2,9 +2,10 @@ import os
 from flask import (
     Flask, flash, render_template, redirect,request, url_for)
 from flask_pymongo import PyMongo
-import datetime
 from bson.objectid import ObjectId
 import random
+import threading
+from datetime import datetime, timedelta
 
 if os.path.exists("env.py"):
     import env
@@ -41,7 +42,7 @@ def edit_quiz():
         if mongo.db.activeQuizes.find({"quizname": selectedQuizName}).count() < 1:
             flash("Quiz doesn't exist")
             return redirect(url_for("join_quiz"))
-        elif mongo.db.activeQuizes.find({ "participants": {selectedTeamName: {"score":0}}}).count() > 0:
+        elif mongo.db.activeQuizes.find({"participants": {selectedTeamName: {"score":0}}}).count() > 0:
             flash("Pick a new team name, name taken")
             return redirect(url_for("join_quiz"))
         else:
@@ -84,7 +85,7 @@ def create_quiz():
 
     if request.method == "POST":
             selectedQuizName = request.form.get("quizName")
-            time = str(datetime.datetime.now())
+            time = datetime.now().strftime("%H:%M:%S")
 
             if mongo.db.activeQuizes.find({"quizname": selectedQuizName}).count() > 0:
 
@@ -94,7 +95,8 @@ def create_quiz():
                 quizid = request.form.get("quizName")
                 name = {
                     "quizname": request.form.get("quizName"),
-                    "createdAt":  time,
+                    "date_posted":  time,
+
                     "participants": [{
                         request.form.get("teamName"): {
                             "score": 0
@@ -147,8 +149,18 @@ def get_leaderboard():
 
 @app.route("/quiz/<quizid>")
 def quiz(quizid):
+
+
+
     quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
-    return render_template("quiz.html", quiz=quiz)
+
+    return render_template("quiz.html", quiz = quiz)
+
+def delete_old_quiz():
+    threading.Timer(600.0, delete_old_quiz).start()
+    mongo.db.activeQuizes.delete_many( { "date_posted" : {"$lt" : (datetime.now() - timedelta(hours=1)).strftime("%H:%M:%S")} })
+delete_old_quiz()
+
 
 @app.route("/info")
 def info():
