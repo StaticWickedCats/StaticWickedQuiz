@@ -1,35 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Quiz</h1>
+{% extends "base.html" %}
+{% block content %}
 
-    <form class="form-format" method="POST" action="{{url_for('create_quiz') }}">
+<div class="container-fluid">
+    <div class="row d-flex mb-3">
+        <div class="content order-lg-2 col-lg-4 d-flex align-items-center justify-content-center flex-column">
+            <div class="logo-box d-flex align-items-center justify-content-center flex-column">
+                <div id="logo-image" class="d-flex align-items-center justify-content-center flex-column img-fluid">
+                    <h1 id="quiz-text">quiz</h1>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center" id="logo-text">
+                <h1>staticwicked</h1>
+            </div>
+        </div>
+        <div class="col-lg-4 order-lg-1 content">
+            <div class="d-flex align-items-center justify-content-center flex-column" id="">
+                <div class="heading-box d-flex align-items-center justify-content-center">
+                    <h2>start a quiz</h2>
+                </div>
+                <a href="{{url_for('make_quiz') }}" class="button-box d-flex align-items-center justify-content-center flex-column">
+                    <div class="img-fluid" id="start-quiz-button">&nbsp;</div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-4 order-lg-3 content">
+            <div class="d-flex align-items-center justify-content-center flex-column" id="">
+                <div class="heading-box d-flex align-items-center justify-content-center">
+                    <h2>join a quiz</h2>
+                </div>
+                <a href="{{url_for('join_quiz') }}" class="button-box d-flex align-items-center justify-content-center flex-column">
+                    <div class="img-fluid" id="join-quiz-button">&nbsp;</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <input id="quizname" name="quizname" type="text" placeholder="Quiz name:" class="validate form-input" title="Only 15 character or less" required/>
-        <button type="submit" class="form-submit">Make a Quiz <i class="fas fa-sign-in-alt"></i></button>
 
-    </form>
 
-            <!-- flash messages -->
-    <section>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                        <h4 class="flash_message">{{ message }}</h4>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-    </section>
-
-    {% for question in famous_irish_people %}
-        {{ question.question }}
-        {{ question.answer }}
-    {% endfor %}
-
-</body>
-</html>
+{% endblock %}
