@@ -8,7 +8,7 @@
     border: 0;
 }
 
-Body {
+body {
     color: #F0F1EB;
     font-family: 'Orbitron';
     letter-spacing: 0px;
@@ -59,7 +59,7 @@ p {
 
 .navbar-toggler {
     margin-right: 5px;
-    background-color: #0B9E50 
+    background-color: #0B9E50
 }
 
 .bwc-nav-list a:hover {
@@ -68,7 +68,7 @@ p {
 
 /*Try and put all page content within this class as this is the height of the footer and so ensures that content is not hidden behind the footer*/
 .container-fluid {
-    padding-bottom: 60px; 
+    padding-bottom: 60px;
 }
 
 /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/
@@ -167,8 +167,8 @@ footer {
 }
 
 /*---------------------------- MEDIA QUERIES------------------------------*/
-@media screen and (max-width: 1280px ){ 
-    /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/ 
+@media screen and (max-width: 1280px ){
+    /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/
     h1 {
         font-size: 4em;
     }
@@ -177,7 +177,7 @@ footer {
         font-size: 2.5em;
     }
 
-    .content { 
+    .content {
     margin: 8% 0%;
     }
 
@@ -190,8 +190,8 @@ footer {
     }
 }
 
-@media screen and (max-width: 376px ){ 
-    /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/ 
+@media screen and (max-width: 376px ){
+    /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/
     h1 {
         font-size: 3em;
     }
