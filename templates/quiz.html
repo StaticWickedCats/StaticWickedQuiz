@@ -1,29 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
-
-<form class="form-format" method="POST" action="{{url_for('create_quiz') }}">
-
-    <input id="quizname" name="quizname" type="text" placeholder="Quiz name:" class="validate form-input"
-        title="Only 15 character or less" required />
-    <button type="submit" class="form-submit">Make a Quiz <i class="fas fa-sign-in-alt"></i></button>
-
-</form>
-
-<!-- flash messages -->
-<section>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <h4 class="flash_message">{{ message }}</h4>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-</section>
-
-{% for question in famous_irish_people %}
-{{ question.question }}
-{{ question.answer }}
-{% endfor %}
-
-
+<!--Content-->
+        <div class="container-fluid" id="question-page">
+            <div id="question-box">
+                <div id="question-text">
+                {{ quiz.question1.question }}
+                </div>
+                <div id="question-answers">
+                    <div id="answer-box1">
+                        <h2>{{ quiz.question1.answer }}</h2>
+                    </div>
+                    <div id="answer-box2">
+                        <h2>{{ quiz.question1.wrong_answer_1 }}</h2>
+                    </div>
+                    <div id="answer-box3">
+                        <h2>{{ quiz.question1.wrong_answer_2 }}</h2>
+                    </div>
+                    <div id="answer-box4">
+                        <h2>{{ quiz.question1.wrong_answer_2 }}</h2>
+                    </div>
+                </div>
+                <div id="question-time">
+                    <h2>00:00</h2>
+                </div>
+            </div>
+        </div>
+        <!--/Content-->
 {% endblock %}

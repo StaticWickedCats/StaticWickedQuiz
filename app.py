@@ -2,9 +2,10 @@ import os
 from flask import (
     Flask, flash, render_template, redirect,request, url_for)
 from flask_pymongo import PyMongo
-import datetime
 from bson.objectid import ObjectId
 import random
+import threading
+from datetime import datetime, timedelta
 
 if os.path.exists("env.py"):
     import env
@@ -41,7 +42,7 @@ def edit_quiz():
         if mongo.db.activeQuizes.find({"quizname": selectedQuizName}).count() < 1:
             flash("Quiz doesn't exist")
             return redirect(url_for("join_quiz"))
-        elif mongo.db.activeQuizes.find({ "participants": {selectedTeamName: {"score":0}}}).count() > 0:
+        elif mongo.db.activeQuizes.find({"participants": {selectedTeamName: {"score":0}}}).count() > 0:
             flash("Pick a new team name, name taken")
             return redirect(url_for("join_quiz"))
         else:
@@ -83,7 +84,7 @@ def create_quiz():
 
     if request.method == "POST":
             selectedQuizName = request.form.get("quizName")
-            time = str(datetime.datetime.now())
+            time = datetime.now().strftime("%H:%M:%S")
 
             if mongo.db.activeQuizes.find({"quizname": selectedQuizName}).count() > 0:
 
@@ -92,7 +93,7 @@ def create_quiz():
             else:
                 name = {
                     "quizname": request.form.get("quizName"),
-                    "date_posted":  datetime.datetime.now(),
+                    "date_posted":  time,
                     "participants": [{
                         request.form.get("teamName"): {
                             "score": 0
@@ -140,19 +141,18 @@ def get_leaderboard():
     return render_template("leaderboard.html", leaderboard=leaderboard)
 
 
-# @app.route("/quiz/<quizid>")
-# def quiz(quizid):
+@app.route("/quiz/<quizid>")
+def quiz(quizid):
 
 
-#     quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
+    quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
 
-#     flash(quiz)
+    return render_template("quiz.html", quiz = quiz)
 
-
-#     #post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-#     return render_template("quiz.html")
-
-
+def delete_old_quiz():
+    threading.Timer(600.0, delete_old_quiz).start()
+    mongo.db.activeQuizes.delete_many( { "date_posted" : {"$lt" : (datetime.now() - timedelta(hours=1)).strftime("%H:%M:%S")} })
+delete_old_quiz()
 
 
 if __name__ == "__main__":
