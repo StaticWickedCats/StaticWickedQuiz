@@ -104,7 +104,7 @@ def create_quiz():
                         }
 
                     }],
-                    "question1": mongo.db.famous_irish_people.find()[int(question_list_order[1])],
+                    "question1": mongo.db.famous_irish_people.find()[int(question_list_order[0])],
                     "question2": mongo.db.famous_irish_people.find()[int(question_list_order[1])],
                     "question3": mongo.db.famous_irish_people.find()[int(question_list_order[2])],
                     "question4": mongo.db.famous_irish_people.find()[int(question_list_order[3])],
