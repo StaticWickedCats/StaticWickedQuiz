@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Flask, flash, render_template, redirect,request, url_for)
+    Flask, flash, render_template, redirect, request, url_for, make_response)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import random
@@ -86,6 +86,7 @@ def create_quiz():
 
     if request.method == "POST":
             selectedQuizName = re.sub(r"[^a-zA-Z0-9]","",request.form.get("quizName"))
+            selectedTeamName = request.form.get("teamName")
             time = datetime.now().strftime("%H:%M:%S")
 
             if mongo.db.activeQuizes.find({"quizname": selectedQuizName}).count() > 0:
@@ -99,7 +100,7 @@ def create_quiz():
                     "date_posted":  time,
 
                     "participants": [{
-                        request.form.get("teamName"): {
+                        selectedTeamName: {
                             "score": 0
                         }
 
@@ -133,8 +134,11 @@ def create_quiz():
                     }}
 
                 mongo.db.activeQuizes.insert_one(name)
-                flash("Quiz Successfully Added ")
-                return redirect(url_for('quiz', quizid=quizid))
+                resp = make_response(redirect(url_for('quiz', quizid=quizid)))
+                resp.set_cookie('team', selectedTeamName)
+
+                return resp
+
 
 
 @app.route("/join", methods=["POST"])
@@ -150,12 +154,9 @@ def get_leaderboard():
 
 @app.route("/quiz/<quizid>")
 def quiz(quizid):
-
-
-
     quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
-
-    return render_template("quiz.html", quiz = quiz)
+    name = request.cookies.get('team')
+    return render_template("quiz.html", quiz = quiz, name = name)
 
 def delete_old_quiz():
     threading.Timer(600.0, delete_old_quiz).start()
