@@ -49,7 +49,8 @@ def edit_quiz():
             mongo.db.activeQuizes.update_one({"quizname" : selectedQuizName}, { "$push": {"participants" : {selectedTeamName: {"score":0}}}})
 
             flash("Team Name Added ")
-            return redirect(url_for("join_quiz"))
+            quizid = selectedQuizName
+            return redirect(url_for('quiz', quizid=quizid))
 
     return redirect(url_for("join_quiz"))
 
@@ -91,43 +92,48 @@ def create_quiz():
                 flash("Quiz Name already taken")
                 return redirect(url_for("make_quiz"))
             else:
+                quizid = request.form.get("quizName")
                 name = {
                     "quizname": request.form.get("quizName"),
                     "date_posted":  time,
+
                     "participants": [{
                         request.form.get("teamName"): {
                             "score": 0
                         }
 
                     }],
-                    "question1": mongo.db.famous_irish_people.find()[int(question_list_order[0])],
-                    "question2": mongo.db.famous_irish_people.find()[int(question_list_order[1])],
-                    "question3": mongo.db.famous_irish_people.find()[int(question_list_order[2])],
-                    "question4": mongo.db.famous_irish_people.find()[int(question_list_order[3])],
-                    "question5": mongo.db.geography.find()[int(question_list_order[4])],
-                    "question6": mongo.db.geography.find()[int(question_list_order[5])],
-                    "question7": mongo.db.geography.find()[int(question_list_order[6])],
-                    "question8": mongo.db.geography.find()[int(question_list_order[7])],
-                    "question9": mongo.db.history.find()[int(question_list_order[8])],
-                    "question10": mongo.db.history.find()[int(question_list_order[9])],
-                    "question11": mongo.db.history.find()[int(question_list_order[10])],
-                    "question12": mongo.db.history.find()[int(question_list_order[11])],
-                    "question13": mongo.db.music.find()[int(question_list_order[12])],
-                    "question14": mongo.db.music.find()[int(question_list_order[13])],
-                    "question15": mongo.db.music.find()[int(question_list_order[14])],
-                    "question16": mongo.db.music.find()[int(question_list_order[15])],
-                    "question17": mongo.db.sports.find()[int(question_list_order[16])],
-                    "question18": mongo.db.sports.find()[int(question_list_order[17])],
-                    "question19": mongo.db.sports.find()[int(question_list_order[18])],
-                    "question20": mongo.db.sports.find()[int(question_list_order[19])],
-                    "question21": mongo.db.st_patricks_day.find()[int(question_list_order[20])],
-                    "question22": mongo.db.st_patricks_day.find()[int(question_list_order[21])],
-                    "question23": mongo.db.st_patricks_day.find()[int(question_list_order[22])],
-                    "question24": mongo.db.st_patricks_day.find()[int(question_list_order[23])]
-                }
+                    "questions": {
+                        "question1": mongo.db.famous_irish_people.find()[int(question_list_order[0])],
+                        "question2": mongo.db.famous_irish_people.find()[int(question_list_order[1])],
+                        "question3": mongo.db.famous_irish_people.find()[int(question_list_order[2])],
+                        "question4": mongo.db.famous_irish_people.find()[int(question_list_order[3])],
+                        "question5": mongo.db.geography.find()[int(question_list_order[4])],
+                        "question6": mongo.db.geography.find()[int(question_list_order[5])],
+                        "question7": mongo.db.geography.find()[int(question_list_order[6])],
+                        "question8": mongo.db.geography.find()[int(question_list_order[7])],
+                        "question9": mongo.db.history.find()[int(question_list_order[8])],
+                        "question10": mongo.db.history.find()[int(question_list_order[9])],
+                        "question11": mongo.db.history.find()[int(question_list_order[10])],
+                        "question12": mongo.db.history.find()[int(question_list_order[11])],
+                        "question13": mongo.db.music.find()[int(question_list_order[12])],
+                        "question14": mongo.db.music.find()[int(question_list_order[13])],
+                        "question15": mongo.db.music.find()[int(question_list_order[14])],
+                        "question16": mongo.db.music.find()[int(question_list_order[15])],
+                        "question17": mongo.db.sports.find()[int(question_list_order[16])],
+                        "question18": mongo.db.sports.find()[int(question_list_order[17])],
+                        "question19": mongo.db.sports.find()[int(question_list_order[18])],
+                        "question20": mongo.db.sports.find()[int(question_list_order[19])],
+                        "question21": mongo.db.st_patricks_day.find()[int(question_list_order[20])],
+                        "question22": mongo.db.st_patricks_day.find()[int(question_list_order[21])],
+                        "question23": mongo.db.st_patricks_day.find()[int(question_list_order[22])],
+                        "question24": mongo.db.st_patricks_day.find()[int(question_list_order[23])]
+
+                    }}
+
                 mongo.db.activeQuizes.insert_one(name)
                 flash("Quiz Successfully Added ")
-                return redirect(url_for("make_quiz"))
+                return redirect(url_for('quiz', quizid=quizid))
 
 
 @app.route("/join", methods=["POST"])
@@ -145,6 +151,7 @@ def get_leaderboard():
 def quiz(quizid):
 
 
+
     quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
 
     return render_template("quiz.html", quiz = quiz)
@@ -154,6 +161,10 @@ def delete_old_quiz():
     mongo.db.activeQuizes.delete_many( { "date_posted" : {"$lt" : (datetime.now() - timedelta(hours=1)).strftime("%H:%M:%S")} })
 delete_old_quiz()
 
+
+@app.route("/info")
+def info():
+    return render_template("info.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),

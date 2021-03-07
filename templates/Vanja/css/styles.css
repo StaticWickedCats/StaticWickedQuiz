@@ -183,6 +183,57 @@ p {
     border-color: #ff914d;  
 }
 
+/*---------------------------- leaderboard page (leaderboard.html) Body Content -----------------------------*/
+
+#form-text {
+    font-size: 1.25em;
+}
+
+.leader-position {
+    height: 50px;
+    width: 50px;
+    margin: 10px 10px;
+}
+
+.btn-green {
+    background-color: #96F09E;
+    margin: 10px 0px 20px 0px;
+    font-family: 'Orbitron';
+    font-size: 1em;
+    letter-spacing: 0px;
+    color: #F0F1EB;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #9D3BE1, 0 0 8px #EE3EC9;
+    box-shadow: 0 0 8px #9D3BE1, 0 0 8px #EE3EC9;
+}
+
+
+#leader-colour-orange {
+    background-color: #FE904C;
+}
+
+#leader-colour-pink {
+    background-color: #EE3EC9;
+}
+
+#leader-colour-purple {
+    background-color: #9D3AE1;
+}
+
+#leader-colour-blue {
+    background-color: #38B5FF;
+}
+
+.leaderboard-text {
+    font-size: 2em;
+    margin-bottom: 0px;
+}
+
+.justify-content-left {
+    padding-left: 30%;
+}
+
+
 /*---------------------------- Score Page (score.html) Body Content -----------------------------*/
 .score-box {
     background-color: #2aa167;
@@ -244,7 +295,52 @@ footer {
     .logo-box {
     height: 27rem;
     }
+
+    /*---------------------------- quiz Page (quiz.html) Body Content -----------------------------*/ 
+    #question-text h1 {
+    font-size: 3em;
+    }
 }
+
+@media screen and (max-width: 770px ) { 
+    /*---------------------------- quiz Page (quiz.html) Body Content -----------------------------*/ 
+    #question-box {
+    width: 100%;
+    }
+
+    #question-answers {
+    width: 70vh;
+    }
+
+    /*--------------------- leaderboard page (leaderboard.html) Body Content -----------------------*/
+    .justify-content-left {
+    padding-left: 20%;
+    }
+}
+
+@media screen and (max-width: 450px ) { 
+    /*---------------------------- quiz Page (quiz.html) Body Content -----------------------------*/ 
+    #question-answers {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    }
+
+    #question-text h1 {
+    font-size: 1.75em;
+    }
+
+    #answer-box1,
+    #answer-box2,
+    #answer-box3,
+    #answer-box4 {
+        height: 17vh;
+        width: 75%;
+    }
+}
+
 
 @media screen and (max-width: 376px ){ 
     /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/ 
@@ -254,5 +350,13 @@ footer {
 
     h2 {
         font-size: 2em;
+    }
+    /*--------------------- leaderboard page (leaderboard.html) Body Content -----------------------*/
+    .justify-content-left {
+    padding-left: 7%;
+    }
+
+    #leaderboard-form {
+        text-align: center;
     }
 }
