@@ -1,29 +1,83 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container-fluid" id="question-page">
+            <div id="question-box">
 
-<form class="form-format" method="POST" action="{{url_for('create_quiz') }}">
+                <div id="start-button">
+                    <button type="button" id="startbtn" onclick="startgame()">Start</button>
+                </div>
 
-    <input id="quizname" name="quizname" type="text" placeholder="Quiz name:" class="validate form-input"
-        title="Only 15 character or less" required />
-    <button type="submit" class="form-submit">Make a Quiz <i class="fas fa-sign-in-alt"></i></button>
+                <div id="question-text">
+                </div>
+                
+                <div id="question-answers">
+                    <!--<div id="answer-box1">
+                        <button type="button" id="startbtn" onclick="question2()"><h2>{{ quiz.questions.question1.answer }}</h2></button>
+                    </div>
+                    <div id="answer-box2">
+                        <h2>{{ quiz.questions.question1.wrong_answer_1 }}</h2>
+                    </div>
+                    <div id="answer-box3">
+                        <h2>{{ quiz.questions.question1.wrong_answer_2 }}</h2>
+                    </div>
+                    <div id="answer-box4">
+                        <h2>{{ quiz.questions.question1.wrong_answer_2 }}</h2>
+                    </div>-->
 
-</form>
+                </div>
 
-<!-- flash messages -->
-<section>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <h4 class="flash_message">{{ message }}</h4>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-</section>
 
-{% for question in famous_irish_people %}
-{{ question.question }}
-{{ question.answer }}
-{% endfor %}
+                <div id="question-time">
+                    <h2>00:00</h2>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var question1 = '{{ quiz.questions.question1.question }}'
+            var question1answer = '{{ quiz.questions.question1.answer }}'
+            var question1option1 = '{{ quiz.questions.question1.wrong_answer_1 }}'
+            var question1option2 = '{{ quiz.questions.question1.wrong_answer_2 }}'
+            var question1option3 = '{{ quiz.questions.question1.wrong_answer_3 }}'
+
+
+            var question2 = '{{ quiz.questions.question2.question }}'
+            var question2answer = '{{ quiz.questions.question2.answer }}'
+            var question2option1 = '{{ quiz.questions.question2.wrong_answer_1 }}'
+            var question2option2 = '{{ quiz.questions.question2.wrong_answer_2 }}'
+            var question2option3 = '{{ quiz.questions.question2.wrong_answer_3 }}'
+
+
+
+            var question3 = '{{ quiz.questions.question3.question }}'
+            var question3answer = '{{ quiz.questions.question3.answer }}'
+            var question3option1 = '{{ quiz.questions.question3.wrong_answer_1 }}'
+            var question3option2 = '{{ quiz.questions.question3.wrong_answer_2 }}'
+            var question3option3 = '{{ quiz.questions.question3.wrong_answer_3 }}'
+
+
+            var question4 = '{{ quiz.questions.question4.question }}'
+            var question5 = '{{ quiz.questions.question5.question }}'
+            var question6 = '{{ quiz.questions.question6.question }}'
+            var question7 = '{{ quiz.questions.question7.question }}'
+            var question8 = '{{ quiz.questions.question8.question }}'
+            var question9 = '{{ quiz.questions.question9.question }}'
+            var question10 = '{{ quiz.questions.question10.question }}'
+            var question11 = '{{ quiz.questions.question11.question }}'
+            var question12 = '{{ quiz.questions.question12.question }}'
+            var question13 = '{{ quiz.questions.question13.question }}'
+            var question14 = '{{ quiz.questions.question14.question }}'
+            var question15 = '{{ quiz.questions.question15.question }}'
+            var question16 = '{{ quiz.questions.question16.question }}'
+            var question17 = '{{ quiz.questions.question17.question }}'
+            var question18 = '{{ quiz.questions.question18.question }}'
+            var question19 = '{{ quiz.questions.question19.question }}'
+            var question20 = '{{ quiz.questions.question20.question }}'
+            var question21 = '{{ quiz.questions.question21.question }}'
+            var question22 = '{{ quiz.questions.question22.question }}'
+            var question23 = '{{ quiz.questions.question23.question }}'
+            var question24 = '{{ quiz.questions.question24.question }}'
+        </script>
 
 
 {% endblock %}
