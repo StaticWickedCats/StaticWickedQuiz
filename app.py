@@ -103,7 +103,7 @@ def create_quiz():
                             "score": 0
                         }
 
-                    },
+                    }],
                     "question1": mongo.db.famous_irish_people.find()[int(question_list_order[1])],
                     "question2": mongo.db.famous_irish_people.find()[int(question_list_order[1])],
                     "question3": mongo.db.famous_irish_people.find()[int(question_list_order[2])],
