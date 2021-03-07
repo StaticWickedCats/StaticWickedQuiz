@@ -150,7 +150,9 @@ def quiz(quizid):
     return render_template("quiz.html", )
 
 
-
+@app.route("/info")
+def info():
+    return render_template("info.html")
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
