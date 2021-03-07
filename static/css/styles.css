@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
 /*---------------------------- Global stylings----------------------------*/
@@ -42,11 +41,20 @@ p {
     text-shadow: 0 0 8px #9D3BE1, 0 0 8px #EE3EC9;
 }
 
+/*Try and put all page content within this class as this is the height of the footer and so ensures that content is not hidden behind the footer*/
+.container-fluid {
+    padding-bottom: 60px;
+}
+
 /*----------------------------------- Navbar------------------------------*/
 .navbar {
     padding: 10px;
-    background: rgb(4,130,67);
-    background: linear-gradient(90deg, rgba(4,130,67,1) 0%, rgba(50,191,132,1) 42%, rgba(163,238,220,1) 100%);
+    background: rgb(4, 130, 67);
+    background: linear-gradient(90deg, rgba(4, 130, 67, 1) 0%, rgba(50, 191, 132, 1) 42%, rgba(163, 238, 220, 1) 100%);
+}
+
+.navbar h2 {
+    font-size: 1.25em;
 }
 
 .nav-link {
@@ -74,15 +82,16 @@ p {
 /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/
 
 
-.content { /*dictates the distance between the navbar and the start and join quiz boxes*/
+.content {
+    /*dictates the distance between the navbar and the start and join quiz boxes*/
     margin: 10% 0%;
 }
 
 .heading-box {
     width: 100%;
     padding: 10px 0px;
-    background: rgb(4,130,67);
-    background: linear-gradient(90deg, rgba(4,130,67,1) 0%, rgba(50,191,132,1) 42%, rgba(163,238,220,1) 100%);
+    background: rgb(4, 130, 67);
+    background: linear-gradient(90deg, rgba(4, 130, 67, 1) 0%, rgba(50, 191, 132, 1) 42%, rgba(163, 238, 220, 1) 100%);
 }
 
 .button-box {
@@ -109,7 +118,7 @@ p {
 
 #start-quiz-button {
     background: url(../images/start-quiz-image.png) no-repeat scroll center;
-    background-size: 175%;
+    background-size: 150%;
     height: 450px;
     width: 450px;
 }
@@ -123,18 +132,133 @@ p {
 
 #join-quiz-button {
     background: url(../images/join-quiz-image.png) no-repeat scroll center;
-    background-size: 125%;
+    background-size: 110%;
     height: 450px;
     width: 450px;
 }
 
 #start-quiz-button:hover {
-    background-size: 180%;
+    background-size: 160%;
 }
 
 #join-quiz-button:hover {
-    background-size: 130%;
+    background-size: 115%;
 }
+
+/*---------------------------- quiz page (quiz.html) Body Content -----------------------------*/
+
+#question-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10vh 0vh;
+}
+
+#question-box {
+    background-color: #2AA167;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#question-text h1 {
+    text-align: center;
+    font-size: 3.5em;
+    margin: 20px 10px;
+}
+
+#question-answers {
+    width: 100vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#answer-box1,
+#answer-box2,
+#answer-box3,
+#answer-box4 {
+    height: 17vh;
+    width: 35%;
+    margin: 15px;
+    text-align: center;
+}
+
+#answer-box1 {
+    background-color: #FE904C;
+}
+
+#answer-box2 {
+    background-color: #EE3EC9;
+}
+
+#answer-box3 {
+    background-color: #9D3AE1;
+}
+
+#answer-box4 {
+    background-color: #38B5FF;
+}
+
+#question-time {
+    text-align: center;
+    font-size: 0.75em;
+    margin: 20px 10px;
+}
+
+/*---------------------------- leaderboard page (leaderboard.html) Body Content -----------------------------*/
+
+#form-text {
+    font-size: 1.25em;
+}
+
+.leader-position {
+    height: 50px;
+    width: 50px;
+    margin: 10px 10px;
+}
+
+.btn-green {
+    background-color: #96F09E;
+    margin: 10px 0px 20px 0px;
+    font-family: 'Orbitron';
+    font-size: 1em;
+    letter-spacing: 0px;
+    color: #F0F1EB;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #9D3BE1, 0 0 8px #EE3EC9;
+    box-shadow: 0 0 8px #9D3BE1, 0 0 8px #EE3EC9;
+}
+
+
+#leader-colour-orange {
+    background-color: #FE904C;
+}
+
+#leader-colour-pink {
+    background-color: #EE3EC9;
+}
+
+#leader-colour-purple {
+    background-color: #9D3AE1;
+}
+
+#leader-colour-blue {
+    background-color: #38B5FF;
+}
+
+.leaderboard-text {
+    font-size: 2em;
+    margin-bottom: 0px;
+}
+
+.justify-content-left {
+    padding-left: 30%;
+}
+
 
 /*---------------------------- Footer -----------------------------*/
 footer {
@@ -142,12 +266,13 @@ footer {
 }
 
 #footer {
-    position:absolute fixed;
-    bottom:0;
-    width:100%;
-    height:60px;   /* Height of the footer */
-    background: rgb(4,130,67);
-    background: linear-gradient(90deg, rgba(4,130,67,1) 0%, rgba(50,191,132,1) 42%, rgba(163,238,220,1) 100%);
+    position: absolute fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    /* Height of the footer */
+    background: rgb(4, 130, 67);
+    background: linear-gradient(90deg, rgba(4, 130, 67, 1) 0%, rgba(50, 191, 132, 1) 42%, rgba(163, 238, 220, 1) 100%);
     color: #F0F1EB;
     text-align: center;
     margin-top: 10px;
@@ -166,6 +291,73 @@ footer {
     color: #9D3BE1;
 }
 
+/*---------------------------------flip cards*/
+
+.card-flip>div {
+    backface-visibility: hidden;
+    transition: transform 300ms;
+    transition-timing-function: linear;
+    width: 100%;
+    height: 300px;
+    margin: 0;
+    display: flex;
+}
+
+.card-front {
+    transform: rotateY(0deg);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+}
+
+.card-body {
+    background-color: #2FB675;
+}
+
+.card-flip:hover .card-front {
+    transform: rotateY(-180deg);
+}
+
+.card-flip:hover .card-back {
+    transform: rotateY(0deg);
+}
+
+.card-title {
+    font-size: 1em;
+}
+
+.card-text {
+    /*font-size: 0, 2em;*/
+    font-size: 0.75em;
+}
+
+/*---------------------------------------- Images*/
+
+img {
+
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.card-body #saintPatrick {
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.card-body #StPatricksDate {
+    max-height: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+
 /*---------------------------- MEDIA QUERIES------------------------------*/
 @media screen and (max-width: 1280px ){
     /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/
@@ -182,11 +374,52 @@ footer {
     }
 
     .button-box {
-    height: 27rem;
+        height: 27rem;
     }
 
     .logo-box {
-    height: 27rem;
+        height: 27rem;
+    }
+
+    /*---------------------------- quiz Page (quiz.html) Body Content -----------------------------*/
+    #question-text h1 {
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 770px) {
+
+    /*---------------------------- quiz Page (quiz.html) Body Content -----------------------------*/
+    #question-box {
+        width: 100%;
+    }
+
+    #question-answers {
+        width: 70vh;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    /*---------------------------- quiz Page (quiz.html) Body Content -----------------------------*/
+    #question-answers {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    #question-text h1 {
+        font-size: 1.75em;
+    }
+
+    #answer-box1,
+    #answer-box2,
+    #answer-box3,
+    #answer-box4 {
+        height: 17vh;
+        width: 75%;
     }
 }
 
