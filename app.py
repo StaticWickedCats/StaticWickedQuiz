@@ -2,9 +2,10 @@ import os
 from flask import (
     Flask, flash, render_template, redirect,request, url_for)
 from flask_pymongo import PyMongo
-import datetime
 from bson.objectid import ObjectId
 import random
+import threading
+from datetime import datetime, timedelta
 
 if os.path.exists("env.py"):
     import env
@@ -41,7 +42,7 @@ def edit_quiz():
         if mongo.db.activeQuizes.find({"quizname": selectedQuizName}).count() < 1:
             flash("Quiz doesn't exist")
             return redirect(url_for("join_quiz"))
-        elif mongo.db.activeQuizes.find({ "participants": {selectedTeamName: {"score":0}}}).count() > 0:
+        elif mongo.db.activeQuizes.find({"participants": {selectedTeamName: {"score":0}}}).count() > 0:
             flash("Pick a new team name, name taken")
             return redirect(url_for("join_quiz"))
         else:
@@ -84,7 +85,7 @@ def create_quiz():
 
     if request.method == "POST":
             selectedQuizName = request.form.get("quizName")
-            time = str(datetime.datetime.now())
+            time = datetime.now().strftime("%H:%M:%S")
 
             if mongo.db.activeQuizes.find({"quizname": selectedQuizName}).count() > 0:
 
@@ -94,38 +95,42 @@ def create_quiz():
                 quizid = request.form.get("quizName")
                 name = {
                     "quizname": request.form.get("quizName"),
-                    "date_posted":  datetime.datetime.now(),
+                    "date_posted":  time,
+
                     "participants": [{
                         request.form.get("teamName"): {
                             "score": 0
                         }
 
                     }],
-                    "question1": mongo.db.famous_irish_people.find()[int(question_list_order[0])],
-                    "question2": mongo.db.famous_irish_people.find()[int(question_list_order[1])],
-                    "question3": mongo.db.famous_irish_people.find()[int(question_list_order[2])],
-                    "question4": mongo.db.famous_irish_people.find()[int(question_list_order[3])],
-                    "question5": mongo.db.geography.find()[int(question_list_order[4])],
-                    "question6": mongo.db.geography.find()[int(question_list_order[5])],
-                    "question7": mongo.db.geography.find()[int(question_list_order[6])],
-                    "question8": mongo.db.geography.find()[int(question_list_order[7])],
-                    "question9": mongo.db.history.find()[int(question_list_order[8])],
-                    "question10": mongo.db.history.find()[int(question_list_order[9])],
-                    "question11": mongo.db.history.find()[int(question_list_order[10])],
-                    "question12": mongo.db.history.find()[int(question_list_order[11])],
-                    "question13": mongo.db.music.find()[int(question_list_order[12])],
-                    "question14": mongo.db.music.find()[int(question_list_order[13])],
-                    "question15": mongo.db.music.find()[int(question_list_order[14])],
-                    "question16": mongo.db.music.find()[int(question_list_order[15])],
-                    "question17": mongo.db.sports.find()[int(question_list_order[16])],
-                    "question18": mongo.db.sports.find()[int(question_list_order[17])],
-                    "question19": mongo.db.sports.find()[int(question_list_order[18])],
-                    "question20": mongo.db.sports.find()[int(question_list_order[19])],
-                    "question21": mongo.db.st_patricks_day.find()[int(question_list_order[20])],
-                    "question22": mongo.db.st_patricks_day.find()[int(question_list_order[21])],
-                    "question23": mongo.db.st_patricks_day.find()[int(question_list_order[22])],
-                    "question24": mongo.db.st_patricks_day.find()[int(question_list_order[23])]
-                }
+                    "questions": {
+                        "question1": mongo.db.famous_irish_people.find()[int(question_list_order[0])],
+                        "question2": mongo.db.famous_irish_people.find()[int(question_list_order[1])],
+                        "question3": mongo.db.famous_irish_people.find()[int(question_list_order[2])],
+                        "question4": mongo.db.famous_irish_people.find()[int(question_list_order[3])],
+                        "question5": mongo.db.geography.find()[int(question_list_order[4])],
+                        "question6": mongo.db.geography.find()[int(question_list_order[5])],
+                        "question7": mongo.db.geography.find()[int(question_list_order[6])],
+                        "question8": mongo.db.geography.find()[int(question_list_order[7])],
+                        "question9": mongo.db.history.find()[int(question_list_order[8])],
+                        "question10": mongo.db.history.find()[int(question_list_order[9])],
+                        "question11": mongo.db.history.find()[int(question_list_order[10])],
+                        "question12": mongo.db.history.find()[int(question_list_order[11])],
+                        "question13": mongo.db.music.find()[int(question_list_order[12])],
+                        "question14": mongo.db.music.find()[int(question_list_order[13])],
+                        "question15": mongo.db.music.find()[int(question_list_order[14])],
+                        "question16": mongo.db.music.find()[int(question_list_order[15])],
+                        "question17": mongo.db.sports.find()[int(question_list_order[16])],
+                        "question18": mongo.db.sports.find()[int(question_list_order[17])],
+                        "question19": mongo.db.sports.find()[int(question_list_order[18])],
+                        "question20": mongo.db.sports.find()[int(question_list_order[19])],
+                        "question21": mongo.db.st_patricks_day.find()[int(question_list_order[20])],
+                        "question22": mongo.db.st_patricks_day.find()[int(question_list_order[21])],
+                        "question23": mongo.db.st_patricks_day.find()[int(question_list_order[22])],
+                        "question24": mongo.db.st_patricks_day.find()[int(question_list_order[23])]
+
+                    }}
+
                 mongo.db.activeQuizes.insert_one(name)
                 flash("Quiz Successfully Added ")
                 return redirect(url_for('quiz', quizid=quizid))
@@ -144,10 +149,17 @@ def get_leaderboard():
 
 @app.route("/quiz/<quizid>")
 def quiz(quizid):
+
+
+
     quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
-    flash(quiz)
-    #post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-    return render_template("quiz.html", )
+
+    return render_template("quiz.html", quiz = quiz)
+
+def delete_old_quiz():
+    threading.Timer(600.0, delete_old_quiz).start()
+    mongo.db.activeQuizes.delete_many( { "date_posted" : {"$lt" : (datetime.now() - timedelta(hours=1)).strftime("%H:%M:%S")} })
+delete_old_quiz()
 
 
 @app.route("/info")
