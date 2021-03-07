@@ -48,7 +48,8 @@ def edit_quiz():
             mongo.db.activeQuizes.update_one({"quizname" : selectedQuizName}, { "$push": {"participants" : {selectedTeamName: {"score":0}}}})
 
             flash("Team Name Added ")
-            return redirect(url_for("join_quiz"))
+            quizid = selectedQuizName
+            return redirect(url_for('quiz', quizid=quizid))
 
     return redirect(url_for("join_quiz"))
 
@@ -90,6 +91,7 @@ def create_quiz():
                 flash("Quiz Name already taken")
                 return redirect(url_for("make_quiz"))
             else:
+                quizid = request.form.get("quizName")
                 name = {
                     "quizname": request.form.get("quizName"),
                     "date_posted":  datetime.datetime.now(),
@@ -126,7 +128,7 @@ def create_quiz():
                 }
                 mongo.db.activeQuizes.insert_one(name)
                 flash("Quiz Successfully Added ")
-                return redirect(url_for("make_quiz"))
+                return redirect(url_for('quiz', quizid=quizid))
 
 
 @app.route("/join", methods=["POST"])
@@ -140,17 +142,12 @@ def get_leaderboard():
     return render_template("leaderboard.html", leaderboard=leaderboard)
 
 
-# @app.route("/quiz/<quizid>")
-# def quiz(quizid):
-
-
-#     quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
-
-#     flash(quiz)
-
-
-#     #post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
-#     return render_template("quiz.html")
+@app.route("/quiz/<quizid>")
+def quiz(quizid):
+    quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
+    flash(quiz)
+    #post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+    return render_template("quiz.html", )
 
 
 
