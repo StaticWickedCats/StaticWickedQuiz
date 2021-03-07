@@ -45,12 +45,7 @@ def edit_quiz():
             flash("Pick a new team name, name taken")
             return redirect(url_for("join_quiz"))
         else:
-            name = {
-                "quizname": mongo.db.activeQuizes.find_one({"quizname": selectedQuizName})["quizname"],
-                "score" : 0
-            }
-
-            mongo.db.activeQuizes.update_one({"quizname" : selectedQuizName}, { "$push": {"participants" : {selectedQuizName: {"score":0}}}})
+            mongo.db.activeQuizes.update_one({"quizname" : selectedQuizName}, { "$push": {"participants" : {selectedTeamName: {"score":0}}}})
 
             flash("Team Name Added ")
             return redirect(url_for("join_quiz"))
@@ -61,7 +56,7 @@ def edit_quiz():
 @app.route("/create_quiz", methods=["POST"])
 def create_quiz():
 
-    # get count for all the question rounds 
+    # get count for all the question rounds
     famous_irish_people_count = mongo.db.famous_irish_people.count()-1
     geography_count = mongo.db.geography.count()-1
     history_count = mongo.db.history.count()-1
