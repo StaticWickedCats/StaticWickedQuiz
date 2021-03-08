@@ -314,7 +314,7 @@ function q24(answerclicked) {
 }
 
 function endgame(answerclicked) {
-    if (answerclicked === question23answer) {
+    if (answerclicked === question24answer) {
         score++;
     }
     $("#question-text").remove();
