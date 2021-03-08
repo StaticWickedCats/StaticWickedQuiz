@@ -3,7 +3,7 @@ var score;
 function startgame() {
     score = 0;
     console.log("Hello world!");
-    $("#start-button").remove(); 
+    $("#start-button").remove();
     options = [ question1answer, question1option1, question1option2, question1option3 ];
     options.sort();
     $("#question-text").append('<h1>' + question1 + '</h1>')
