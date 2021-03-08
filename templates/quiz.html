@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container-fluid"><h2>Team: {{ name}}</h2></div>
+<div class="container-fluid"><h3>Share Quiz: {{url}}</h3></div>
 <div class="container-fluid" id="question-page">
             <div id="question-box">
-
                 <div id="start-button">
                     <button type="button" id="startbtn" onclick="startgame()">Start</button>
                 </div>
-
                 <div id="question-text">
                 </div>
-                
                 <div id="question-answers"></div>
 
                 <div id="score"></div>
+
 
 
                 <div id="question-time">
@@ -20,7 +20,6 @@
                 </div>
             </div>
         </div>
-
         <script>
             var question1 = '{{ quiz.questions.question1.question }}'
             var question1answer = '{{ quiz.questions.question1.answer }}'
@@ -144,6 +143,4 @@
             var question24option3 = '{{ quiz.questions.question24.wrong_answer_3 }}'
 
         </script>
-
-
 {% endblock %}

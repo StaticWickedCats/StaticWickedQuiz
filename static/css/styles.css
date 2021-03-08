@@ -7,7 +7,7 @@
     border: 0;
 }
 
-Body {
+body {
     color: #F0F1EB;
     font-family: 'Orbitron';
     letter-spacing: 0px;
@@ -72,6 +72,11 @@ p {
 
 .bwc-nav-list a:hover {
     text-shadow: 0 0 15px #C181ED, 0 0 15px #F87CDE;
+}
+
+/*Try and put all page content within this class as this is the height of the footer and so ensures that content is not hidden behind the footer*/
+.container-fluid {
+    padding-bottom: 60px;
 }
 
 /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/
@@ -254,7 +259,6 @@ p {
     padding-left: 30%;
 }
 
-
 /*---------------------------- Footer -----------------------------*/
 footer {
     position: fixed;
@@ -286,6 +290,66 @@ footer {
     color: #9D3BE1;
 }
 
+
+/*---------------------------- Start Quiz (startQuiz.html) Body Content-----------------------------*/
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    vertical-align: -webkit-baseline-middle;
+}
+
+.colorbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15vh 5vh;
+}
+
+.background-box {
+    background-color: #2aa167;
+    height: 110%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ 
+.teamName { /*The title font styling*/
+    font-family: 'Orbitron';
+    padding: 2rem 1rem 2rem 1rem;
+    text-align: center;
+    text-transform: none;
+}
+
+.form-control { /*The form additional styling*/
+    text-align: center;
+}
+
+.btn-success { /*The Start Quiz button additional styling*/
+    background-color: #ff914d;
+    font-weight: bold;
+}
+
+.btn-success:hover,
+.btn-success:active,
+.btn-success:focus,
+.btn-success.active {
+    background: #FE7A29;
+    color: #ffffff;
+    border-color: #ff914d;  
+}
+
+/*---------------------------- Score Page (score.html) Body Content -----------------------------*/
+
+.score-box {
+    background-color: #2aa167;
+    height: 140%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 /*---------------------------------flip cards*/
 
 .card-flip>div {
@@ -352,10 +416,8 @@ img {
     display: block;
 }
 
-
 /*---------------------------- MEDIA QUERIES------------------------------*/
-@media screen and (max-width: 1280px) {
-
+@media screen and (max-width: 1280px ){
     /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/
     h1 {
         font-size: 4em;
@@ -366,7 +428,7 @@ img {
     }
 
     .content {
-        margin: 8% 0%;
+    margin: 8% 0%;
     }
 
     .button-box {
@@ -419,8 +481,7 @@ img {
     }
 }
 
-@media screen and (max-width: 376px) {
-
+@media screen and (max-width: 376px ){
     /*---------------------------- Landing Page (index.html) Body Content -----------------------------*/
     h1 {
         font-size: 3em;
