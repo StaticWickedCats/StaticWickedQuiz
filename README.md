@@ -58,13 +58,18 @@ The wireframes were designed using [Balsamiq](https://balsamiq.com/). They're ac
 
 ## 3. Technologies used
 
-- [HTML5](https://html.com/) - provides the content and structure for our website.
-- [CSS3](http://www.css3.info/) - provides the styling.
-- [JavaScript](https://www.javascript.com/) - provides the functionality and interaction.
-- [Bootstrap](https://getbootstrap.com/) - used to create the layout of the project.
-- [Gitpod](https://gitpod.io/) and [VSCode](https://code.visualstudio.com/) - used to develop the project.
-- [GitHub](https://github.com/) - 
-- [Heroku]() -
+- [HTML5](https://html.com/)
+- [CSS3](http://www.css3.info/) 
+- [JavaScript](https://www.javascript.com/) 
+- [Python](https://www.python.org/)
+- [Bootstrap](https://getbootstrap.com/) 
+- [Flask](https://www.fullstackpython.com/flask.html)
+- [Mongo](https://www.mongodb.com/)
+- [Regex]()
+- [Gitpod](https://gitpod.io/)
+- [VSCode](https://code.visualstudio.com/)
+- [GitHub](https://github.com/) 
+- [Heroku](https://www.heroku.com/)
 - [Font Awesome](https://fontawesome.com/) 
 -
 
