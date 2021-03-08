@@ -90,7 +90,6 @@ def create_quiz():
             time = datetime.now().strftime("%H:%M:%S")
 
             if mongo.db.activeQuizes.find({"quizname": selectedQuizName}).count() > 0:
-
                 flash("Quiz Name already taken")
                 return redirect(url_for("make_quiz"))
             else:
@@ -98,12 +97,10 @@ def create_quiz():
                 name = {
                     "quizname": selectedQuizName,
                     "date_posted":  time,
-
                     "participants": [{
                         selectedTeamName: {
                             "score": 0
                         }
-
                     }],
                     "questions": {
                         "question1": mongo.db.famous_irish_people.find()[int(question_list_order[0])],
@@ -132,12 +129,10 @@ def create_quiz():
                         "question24": mongo.db.st_patricks_day.find()[int(question_list_order[23])]
 
                     }}
-
                 mongo.db.activeQuizes.insert_one(name)
                 resp = make_response(redirect(url_for('quiz', quizid=quizid)))
                 resp.set_cookie('team', selectedTeamName)
                 resp.set_cookie('url', selectedQuizName)
-
                 return resp
 
 
@@ -158,7 +153,6 @@ def quiz(quizid):
     quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
     name = request.cookies.get('team')
     url = request.cookies.get('url')
-    print = (name, url)
     return render_template("quiz.html", quiz = quiz, name = name, url = url)
 
 def delete_old_quiz():
