@@ -1,13 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container-fluid d-flex align-items-center justify-content-center mt-5">
+  <div id="question-box">
+    <div id="question-text">
+      <h1>Start New Quiz</h1>
+    </div>
+    <div class="container mb-5">
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-center">
+          <form class="form-format" method="POST" action="{{url_for('create_quiz') }}">
 
-<h1>Make Quiz</h1>
-<form class="form-format" method="POST" action="{{url_for('create_quiz') }}">
+            <input id="quizName" name="quizName" type="text" placeholder="Quiz Name:" class="validate form-input" title="Only 15 character or less" required />
+            <input id="teamName" name="teamName" type="text" placeholder="Team name:" class="validate form-input" title="Only 15 character or less" required />
+            <div class="col-md-12 d-flex justify-content-center mt-3">
+              <button type="submit" class="form-submit">Submit</button>
+            </div>
 
-        <input id="quizName" name="quizName" type="text" placeholder="Quiz name:" class="validate form-input" title="Only 15 character or less" required/>
-        <input id="teamName" name="teamName" type="text" placeholder="Team name:" class="validate form-input" title="Only 15 character or less" required/>
-        <button type="submit" class="form-submit">Make a Quiz <i class="fas fa-sign-in-alt"></i></button>
-
-</form>
-
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
