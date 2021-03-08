@@ -41,7 +41,7 @@ The font ‘Magz’ and ‘Orbitron’ was used, as it was or close to the logo 
 ### 1.4. Wireframes
 The wireframes were designed using [Balsamiq](https://balsamiq.com/). 
 
-The wireframes and designs are accessible in the following [link](wireframes/Wireframes&Designs.jpg).
+The wireframes and designs are accessible in the following [link](readme-files/Wireframes&Designs.jpg).
 
 ---
 
