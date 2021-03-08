@@ -1,7 +1,5 @@
 # StaticWickedQuiz
 
-![]()
-
 One or two paragraphs providing an overview of your project.
 
 Essentially, this part is your sales pitch.
@@ -10,7 +8,6 @@ This project was developed by StaticWickedCats
 
 You can visit the deployed website [here](https://staticwickedquiz.herokuapp.com/).
 
----
 
 ## 1. UX
 
@@ -121,3 +118,10 @@ The photos used in this site were obtained from ...
 ### 6.1. Acknowledgments
 
 I received inspiration for this project from X
+
+
+### Info Page
+Inspiration for flipping cards: [codeply.com](https://www.codeply.com/go/roydoXgaLr/bootstrap-4-flip-cards)<br>
+All images are from google resources with Creative Commons licenses.
+
+
