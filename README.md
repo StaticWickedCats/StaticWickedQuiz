@@ -2,7 +2,7 @@
 
 The StaticWicked Quiz from StaticWickedCats is a Quiz-based game. 
 This is made in celebration of St.Patrick's Day on 17th March. Moreover to bring a sense of community and «togetherness» during a difficult time (Covid). 
-Furthermore to make it so we all can test our knowledge of this day, including the traditions and culture of Ireland in a fun way, as well of the use of video chatting platforms, and gamification to enhance the experience. 
+Furthermore to make it so we all can test our knowledge of this day, including the traditions and culture of Ireland in a fun way, as well of the use of external video chatting platforms (Zoom, Google Meet, Skype etc.), and gamification to enhance the experience. 
 
 This project was developed by StaticWickedCats, students from [Code Institute](https://codeinstitute.net/):
 - [Anna](https://github.com/annaweronica)
@@ -38,12 +38,10 @@ The colors used were shades of green, while having some specific details in a co
 **Fonts**: 
 The font ‘Magz’ and ‘Orbitron’ was used, as it was or close to the logo design font as well as giving it a «game» feel. Which links with the theme of a quiz game. The fonts was imported from Google Fonts and from Cufon Fonts.
 
-### 1.3. Wireframes
-The wireframes were designed using [Balsamiq](https://balsamiq.com/). They're accessible in the following links:
+### 1.4. Wireframes
+The wireframes were designed using [Balsamiq](https://balsamiq.com/). 
 
-|    Home   |    Quiz    |    Leaderboard    |
-|    :----:    |     :----:   |    :----:    |
-| [Home Page](wireframes/home.png) | [Quiz Page](wireframes/quiz.png) | [Leaderboard Page](wireframes/leaderboard.png) |
+The wireframes and designs are accessible in the following [link](wireframes/Wireframes&Designs.jpg).
 
 ---
 
