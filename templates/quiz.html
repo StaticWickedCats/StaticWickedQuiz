@@ -1,29 +1,146 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container-fluid"><h2>Team: {{ name}}</h2></div>
+<div class="container-fluid"><h3>Share Quiz: {{url}}</h3></div>
+<div class="container-fluid" id="question-page">
+            <div id="question-box">
+                <div id="start-button">
+                    <button type="button" id="startbtn" onclick="startgame()">Start</button>
+                </div>
+                <div id="question-text">
+                </div>
+                <div id="question-answers"></div>
 
-<form class="form-format" method="POST" action="{{url_for('create_quiz') }}">
-
-    <input id="quizname" name="quizname" type="text" placeholder="Quiz name:" class="validate form-input"
-        title="Only 15 character or less" required />
-    <button type="submit" class="form-submit">Make a Quiz <i class="fas fa-sign-in-alt"></i></button>
-
-</form>
-
-<!-- flash messages -->
-<section>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <h4 class="flash_message">{{ message }}</h4>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-</section>
-
-{% for question in famous_irish_people %}
-{{ question.question }}
-{{ question.answer }}
-{% endfor %}
+                <div id="score"></div>
 
 
+
+                <div id="question-time">
+                    <h2>00:00</h2>
+                </div>
+            </div>
+        </div>
+        <script>
+            var question1 = '{{ quiz.questions.question1.question }}'
+            var question1answer = '{{ quiz.questions.question1.answer }}'
+            var question1option1 = '{{ quiz.questions.question1.wrong_answer_1 }}'
+            var question1option2 = '{{ quiz.questions.question1.wrong_answer_2 }}'
+            var question1option3 = '{{ quiz.questions.question1.wrong_answer_3 }}'
+            var question2 = '{{ quiz.questions.question2.question }}'
+            var question2answer = '{{ quiz.questions.question2.answer }}'
+            var question2option1 = '{{ quiz.questions.question2.wrong_answer_1 }}'
+            var question2option2 = '{{ quiz.questions.question2.wrong_answer_2 }}'
+            var question2option3 = '{{ quiz.questions.question2.wrong_answer_3 }}'
+            var question3 = '{{ quiz.questions.question3.question }}'
+            var question3answer = '{{ quiz.questions.question3.answer }}'
+            var question3option1 = '{{ quiz.questions.question3.wrong_answer_1 }}'
+            var question3option2 = '{{ quiz.questions.question3.wrong_answer_2 }}'
+            var question3option3 = '{{ quiz.questions.question3.wrong_answer_3 }}'
+            var question4 = '{{ quiz.questions.question4.question }}'
+            var question4answer = '{{ quiz.questions.question4.answer }}'
+            var question4option1 = '{{ quiz.questions.question4.wrong_answer_1 }}'
+            var question4option2 = '{{ quiz.questions.question4.wrong_answer_2 }}'
+            var question4option3 = '{{ quiz.questions.question4.wrong_answer_3 }}'
+            var question5 = '{{ quiz.questions.question5.question}}'
+            var question5answer = '{{ quiz.questions.question5.answer }}'
+            var question5option1 = '{{ quiz.questions.question5.wrong_answer_1 }}'
+            var question5option2 = '{{ quiz.questions.question5.wrong_answer_2 }}'
+            var question5option3 = '{{ quiz.questions.question5.wrong_answer_3 }}'
+            var question6 = '{{ quiz.questions.question6.question}}'
+            var question6answer = '{{ quiz.questions.question6.answer }}'
+            var question6option1 = '{{ quiz.questions.question6.wrong_answer_1 }}'
+            var question6option2 = '{{ quiz.questions.question6.wrong_answer_2 }}'
+            var question6option3 = '{{ quiz.questions.question6.wrong_answer_3 }}'
+            var question7 = '{{ quiz.questions.question7.question}}'
+            var question7answer = '{{ quiz.questions.question7.answer }}'
+            var question7option1 = '{{ quiz.questions.question7.wrong_answer_1 }}'
+            var question7option2 = '{{ quiz.questions.question7.wrong_answer_2 }}'
+            var question7option3 = '{{ quiz.questions.question7.wrong_answer_3 }}'
+            var question8 = '{{ quiz.questions.question8.question}}'
+            var question8answer = '{{ quiz.questions.question8.answer }}'
+            var question8option1 = '{{ quiz.questions.question8.wrong_answer_1 }}'
+            var question8option2 = '{{ quiz.questions.question8.wrong_answer_2 }}'
+            var question8option3 = '{{ quiz.questions.question8.wrong_answer_3 }}'
+            var question9 = '{{ quiz.questions.question9.question}}'
+            var question9answer = '{{ quiz.questions.question9.answer }}'
+            var question9option1 = '{{ quiz.questions.question9.wrong_answer_1 }}'
+            var question9option2 = '{{ quiz.questions.question9.wrong_answer_2 }}'
+            var question9option3 = '{{ quiz.questions.question9.wrong_answer_3 }}'
+            var question10 = '{{ quiz.questions.question10.question}}'
+            var question10answer = '{{ quiz.questions.question10.answer }}'
+            var question10option1 = '{{ quiz.questions.question10.wrong_answer_1 }}'
+            var question10option2 = '{{ quiz.questions.question10.wrong_answer_2 }}'
+            var question10option3 = '{{ quiz.questions.question10.wrong_answer_3 }}'
+            var question11 = '{{ quiz.questions.question11.question}}'
+            var question11answer = '{{ quiz.questions.question11.answer }}'
+            var question11option1 = '{{ quiz.questions.question11.wrong_answer_1 }}'
+            var question11option2 = '{{ quiz.questions.question11.wrong_answer_2 }}'
+            var question11option3 = '{{ quiz.questions.question11.wrong_answer_3 }}'
+            var question12 = '{{ quiz.questions.question12.question}}'
+            var question12answer = '{{ quiz.questions.question12.answer }}'
+            var question12option1 = '{{ quiz.questions.question12.wrong_answer_1 }}'
+            var question12option2 = '{{ quiz.questions.question12.wrong_answer_2 }}'
+            var question12option3 = '{{ quiz.questions.question12.wrong_answer_3 }}'
+            var question13 = '{{ quiz.questions.question13.question}}'
+            var question13answer = '{{ quiz.questions.question13.answer }}'
+            var question13option1 = '{{ quiz.questions.question13.wrong_answer_1 }}'
+            var question13option2 = '{{ quiz.questions.question13.wrong_answer_2 }}'
+            var question13option3 = '{{ quiz.questions.question13.wrong_answer_3 }}'
+            var question14 = '{{ quiz.questions.question14.question}}'
+            var question14answer = '{{ quiz.questions.question14.answer }}'
+            var question14option1 = '{{ quiz.questions.question14.wrong_answer_1 }}'
+            var question14option2 = '{{ quiz.questions.question14.wrong_answer_2 }}'
+            var question14option3 = '{{ quiz.questions.question14.wrong_answer_3 }}'
+            var question15 = '{{ quiz.questions.question15.question}}'
+            var question15answer = '{{ quiz.questions.question15.answer }}'
+            var question15option1 = '{{ quiz.questions.question15.wrong_answer_1 }}'
+            var question15option2 = '{{ quiz.questions.question15.wrong_answer_2 }}'
+            var question15option3 = '{{ quiz.questions.question15.wrong_answer_3 }}'
+            var question16 = '{{ quiz.questions.question16.question}}'
+            var question16answer = '{{ quiz.questions.question16.answer }}'
+            var question16option1 = '{{ quiz.questions.question16.wrong_answer_1 }}'
+            var question16option2 = '{{ quiz.questions.question16.wrong_answer_2 }}'
+            var question16option3 = '{{ quiz.questions.question16.wrong_answer_3 }}'
+            var question17 = '{{ quiz.questions.question17.question}}'
+            var question17answer = '{{ quiz.questions.question17.answer }}'
+            var question17option1 = '{{ quiz.questions.question17.wrong_answer_1 }}'
+            var question17option2 = '{{ quiz.questions.question17.wrong_answer_2 }}'
+            var question17option3 = '{{ quiz.questions.question17.wrong_answer_3 }}'
+            var question18 = '{{ quiz.questions.question18.question}}'
+            var question18answer = '{{ quiz.questions.question18.answer }}'
+            var question18option1 = '{{ quiz.questions.question18.wrong_answer_1 }}'
+            var question18option2 = '{{ quiz.questions.question18.wrong_answer_2 }}'
+            var question18option3 = '{{ quiz.questions.question18.wrong_answer_3 }}'
+            var question19 = '{{ quiz.questions.question19.question}}'
+            var question19answer = '{{ quiz.questions.question19.answer }}'
+            var question19option1 = '{{ quiz.questions.question19.wrong_answer_1 }}'
+            var question19option2 = '{{ quiz.questions.question19.wrong_answer_2 }}'
+            var question19option3 = '{{ quiz.questions.question19.wrong_answer_3 }}'
+            var question20 = '{{ quiz.questions.question20.question}}'
+            var question20answer = '{{ quiz.questions.question20.answer }}'
+            var question20option1 = '{{ quiz.questions.question20.wrong_answer_1 }}'
+            var question20option2 = '{{ quiz.questions.question20.wrong_answer_2 }}'
+            var question20option3 = '{{ quiz.questions.question20.wrong_answer_3 }}'
+            var question21 = '{{ quiz.questions.question21.question}}'
+            var question21answer = '{{ quiz.questions.question21.answer }}'
+            var question21option1 = '{{ quiz.questions.question21.wrong_answer_1 }}'
+            var question21option2 = '{{ quiz.questions.question21.wrong_answer_2 }}'
+            var question21option3 = '{{ quiz.questions.question21.wrong_answer_3 }}'
+            var question22 = '{{ quiz.questions.question22.question}}'
+            var question22answer = '{{ quiz.questions.question22.answer }}'
+            var question22option1 = '{{ quiz.questions.question22.wrong_answer_1 }}'
+            var question22option2 = '{{ quiz.questions.question22.wrong_answer_2 }}'
+            var question22option3 = '{{ quiz.questions.question22.wrong_answer_3 }}'
+            var question23 = '{{ quiz.questions.question23.question}}'
+            var question23answer = '{{ quiz.questions.question23.answer }}'
+            var question23option1 = '{{ quiz.questions.question23.wrong_answer_1 }}'
+            var question23option2 = '{{ quiz.questions.question23.wrong_answer_2 }}'
+            var question23option3 = '{{ quiz.questions.question23.wrong_answer_3 }}'
+            var question24 = '{{ quiz.questions.question24.question}}'
+            var question24answer = '{{ quiz.questions.question24.answer }}'
+            var question24option1 = '{{ quiz.questions.question24.wrong_answer_1 }}'
+            var question24option2 = '{{ quiz.questions.question24.wrong_answer_2 }}'
+            var question24option3 = '{{ quiz.questions.question24.wrong_answer_3 }}'
+
+        </script>
 {% endblock %}
