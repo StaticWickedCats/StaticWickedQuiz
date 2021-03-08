@@ -6,67 +6,68 @@ One or two paragraphs providing an overview of your project.
 
 Essentially, this part is your sales pitch.
 
-You can visit the deployed website [here](https://staticwickedquiz.herokuapp.com/get_leaderboard).
+This project was developed by StaticWickedCats
+
+You can visit the deployed website [here](https://staticwickedquiz.herokuapp.com/).
 
 ---
 
 ## 1. UX
 
-Use this section to provide insight into your UX process, focusing on who this website is for, what it is that they want to achieve and how your project is the best way to help them achieve these things.
-
-In particular, as part of this section we recommend that you provide a list of User Stories, with the following general structure:
-
-As a user type, I want to perform an action, so that I can achieve a goal.
-This section is also where you would share links to any wireframes, mockups, diagrams etc. that you created as part of the design process. These files should themselves either be included as a pdf file in the project itself (in an separate directory), or just hosted elsewhere online and can be in any format that is viewable inside the browser.
-
 ### 1.1. Project Goals
 
+
 ### 1.2. User Stories
+- As a user, I want to have fun on St. Patrick's day, even while in lockdown.
+- As a user, I want to learn more about Ireland to celebrate St. Patrick's day.
+- As a user, I want to play with my friends and/or family while social distancing.
+- As a user, I want to be able to see how good I did compared to other teams.
 
 ### 1.3. Design Choices
 
 - **Fonts**: 
-- **Cards**: 
-- **Audio files**:
-- **Colours**: 
+- **Colours**: we decided to use green as our main colour to represent Ireland and St. Patrick's day.
 
 ### 1.4. Wireframes
-The wireframes were designed using [](). They're accessible in the following links:
+The wireframes were designed using [Balsamiq](https://balsamiq.com/). They're accessible in the following links:
 
-|    Desktop   |    Tablet    |    Mobile    |
+|    Home   |    Quiz    |    Leaderboard    |
 |    :----:    |     :----:   |    :----:    |
-
+| [Home Page](wireframes/home.png) | [Quiz Page](wireframes/quiz.png) | [Leaderboard Page](wireframes/leaderboard.png) |
 ---
 
 ## 2. Features
 
-In this section, you should go over the different parts of your project, and describe each in a sentence or so.
-
 ### 2.1. Existing Features
-Feature 1 - allows users X to achieve Y, by having them fill out Z
-...
-For some/all of your features, you may choose to reference the specific project files that implement them, although this is entirely optional.
 
-In addition, you may also use this section to discuss plans for additional features to be implemented in the future:
+**Home Page** includes:
+- **Game's name and main logo**: allows users to identify where they are and the kind of game they're about to play.
+- **Navigation Menu**: allows users to navigate the site in an easy and intuitive way.
+- **Navigation Menu**:
+
+**Quiz Page** includes:
+- 
+
+**Leaderboard Page** includes:
+- a leaderboard: this allows the different teams to see how good they did and see how many points they and their friends got.
+
+**Info Page** includes:
+- 
 
 ### 2.2. Features Left to Implement
-Another feature idea
+
 
 ---
 
 ## 3. Technologies used
 
-In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
-
-JQuery
-The project uses JQuery to simplify DOM manipulation.
-
-- [HTML5](https://html.com/) 
-- [Bootstrap](https://getbootstrap.com/) 
-- [CSS3](http://www.css3.info/) 
-- [JavaScript](https://www.javascript.com/) 
-- [Gitpod](https://gitpod.io/) 
-- [GitHub](https://github.com/) 
+- [HTML5](https://html.com/) - provides the content and structure for our website.
+- [CSS3](http://www.css3.info/) - provides the styling.
+- [JavaScript](https://www.javascript.com/) - provides the functionality and interaction.
+- [Bootstrap](https://getbootstrap.com/) - used to create the layout of the project.
+- [Gitpod](https://gitpod.io/) and [VSCode](https://code.visualstudio.com/) - used to develop the project.
+- [GitHub](https://github.com/) - 
+- [Heroku]() -
 - [Font Awesome](https://fontawesome.com/) 
 -
 
