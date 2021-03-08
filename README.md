@@ -1,8 +1,8 @@
 # StaticWickedQuiz
 
-One or two paragraphs providing an overview of your project.
-
-Essentially, this part is your sales pitch.
+The StaticWicked Quiz from StaticWickedCats is a Quiz-based game. 
+This is made in celebration of St.Patrick's Day on 17th March. Moreover to bring a sense of community and «togetherness» during a difficult time (Covid). 
+Furthermore to make it so we all can test our knowledge of this day, including the traditions and culture of Ireland in a fun way, as well of the use of video chatting platforms, and gamification to enhance the experience. 
 
 You can visit the deployed website [here](https://staticwickedquiz.herokuapp.com/get_leaderboard).
 
@@ -22,10 +22,26 @@ This section is also where you would share links to any wireframes, mockups, dia
 
 ### 1.3. Design Choices
 
+- **Colours**: 
+The colors used were shades of green, while having some specific details in a color of blue, purple, orange and pink, to link with the St. Patrick's Day theme, our main logo and give it a feel of a game. 
+
+Details: 
+
+	-Main Colors being used: #2AA167, #2FB675, #96F09E
+
+	-Gradient on Nav and Footer: #048243, #32BF84, #CAFFFB
+
+	-Added Shadow and Colors on Text: #EE3EC9, #9D3BE1
+
+	-Answer Boxes Colors: #FF914D, #EE3EC9, #9D3BE1, #38B6FF
+
 - **Fonts**: 
+    -The font ‘Magz’ and ‘Orbitron’  was used, as it was or close to the logo design font as well as giving it a «game» feel. 
+    Which links with the theme of a quiz game. The fonts was imported from Google Fonts and from Cufon Fonts.
+
 - **Cards**: 
 - **Audio files**:
-- **Colours**: 
+
 
 ### 1.4. Wireframes
 The wireframes were designed using [](). They're accessible in the following links:
@@ -65,7 +81,7 @@ The project uses JQuery to simplify DOM manipulation.
 - [Gitpod](https://gitpod.io/) 
 - [GitHub](https://github.com/) 
 - [Font Awesome](https://fontawesome.com/) 
--
+- [Cufon Fonts](http://www.cufonfonts.com) 
 
 ---
 
