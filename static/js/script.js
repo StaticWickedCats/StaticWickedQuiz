@@ -1,9 +1,11 @@
-
+var timeleft = 500;
+var elem = document.getElementById('question-time');
+var timerId
 
 function startgame() {
     score = 0;
     $("#start-button").remove();
-    clock();
+    timerId = setInterval(countdown, 1000);
     $("#question-time").toggle();
     $("#question-box").css({'background-color': '#2aa167'})
     options = [ question1answer, question1option1, question1option2, question1option3 ];
@@ -19,7 +21,6 @@ function startgame() {
 }
 
 function q2(answerclicked) {
-  clock();
     if (answerclicked === question1answer) {
         score++;
     }
@@ -323,7 +324,7 @@ function q23(answerclicked) {
     options23 .sort();
     document.getElementById('answer-box1').innerHTML = ("<h2><button type='button' class='answer' onclick='q24(this.innerHTML)'>" + options23[0] + "</button></h2>");
     document.getElementById('answer-box2').innerHTML = ("<h2><button type='button' class='answer' onclick='q24(this.innerHTML)'>" + options23[1] + "</button></h2>");
-    document.getElementById('answer-box3').innerHTML = ("<h2><button type='button' class='answer' onclick='q24(this.innerHTML)'>" + options23[1] + "</button></h2>");
+    document.getElementById('answer-box3').innerHTML = ("<h2><button type='button' class='answer' onclick='q24(this.innerHTML)'>" + options23[2] + "</button></h2>");
     document.getElementById('answer-box4').innerHTML = ("<h2><button type='button' class='answer' onclick='q24(this.innerHTML)'>" + options23[3] + "</button></h2>");
     document.getElementById('q').innerHTML = ("23 of 24");
 }
@@ -341,6 +342,24 @@ function q24(answerclicked) {
     document.getElementById('answer-box4').innerHTML = ("<h2><button type='button' class='answer' onclick='endgame(this.innerHTML)'>" + options24[3] + "</button></h2>");
     document.getElementById('q').innerHTML = ("24 of 24");
 }
+
+function clock() {
+  clearTimeout(timerId);
+
+
+
+
+  }
+
+  function countdown() {
+    if (timeLeft == -1) {
+      clearTimeout(timerId);
+      endgame(false)
+    } else {
+      elem.innerHTML = timeLeft + ' seconds remaining';
+      timeLeft--;
+    }
+  }
 
 function endgame(answerclicked) {
     if (answerclicked === question24answer) {
@@ -363,6 +382,4 @@ fetch("/add_score", {
 }).then(res => {
   console.log("Request complete! response:", res);
 });
-
-
 }

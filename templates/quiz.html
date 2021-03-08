@@ -21,12 +21,13 @@
 
     <div id="score"></div>
     <div class="question-time">
-      <h2 id="question-time"">00:00</h2>
+      <h2 id="question-time"></h2>
       <h3 id="q"></h3>
     </div>
   </div>
 </div>
 <script>
+  var timeLeft = 30;
   var question1 = '{{ quiz.questions.question1.question }}'
   var question1answer = '{{ quiz.questions.question1.answer }}'
   var question1option1 = '{{ quiz.questions.question1.wrong_answer_1 }}'
@@ -147,23 +148,5 @@
   var question24option1 = '{{ quiz.questions.question24.wrong_answer_1 }}'
   var question24option2 = '{{ quiz.questions.question24.wrong_answer_2 }}'
   var question24option3 = '{{ quiz.questions.question24.wrong_answer_3 }}'
-
-function clock() {
-  clearTimeout(timerId);
-  var timeLeft = 30;
-    var elem = document.getElementById('question-time');
-
-    var timerId = setInterval(countdown, 1000);
-
-    function countdown() {
-      if (timeLeft == -1) {
-        clearTimeout(timerId);
-        q2(false)
-      } else {
-        elem.innerHTML = timeLeft + ' seconds remaining';
-        timeLeft--;
-      }
-    }
-  }
 </script>
 {% endblock %}
