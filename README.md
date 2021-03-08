@@ -33,11 +33,10 @@ The colors used were shades of green, while having some specific details in a co
     Which links with the theme of a quiz game. The fonts was imported from Google Fonts and from Cufon Fonts.
 
 ### 1.4. Wireframes
-The wireframes were designed using [Balsamiq](https://balsamiq.com/). They're accessible in the following links:
+The wireframes were designed using [Balsamiq](https://balsamiq.com/). 
 
-|    Wiredframes&Designs    |
-|    :----:    |     :----:   |    :----:    |
-| [Wireframes&Designs](wireframes/Wireframes&Designs.jpg) |
+The wireframes and designs are accessible in the following [link](wireframes/Wireframes&Designs.jpg).
+
 ---
 
 ## 2. Features
