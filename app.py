@@ -160,6 +160,16 @@ def delete_old_quiz():
     mongo.db.activeQuizes.delete_many( { "date_posted" : {"$lt" : (datetime.now() - timedelta(hours=1)).strftime("%H:%M:%S")} })
 delete_old_quiz()
 
+@app.route("/add_score", methods=["POST"])
+def add_score():
+    if request.method == "POST":
+        name = request.cookies.get('team')
+        team_entry = {
+        "team_name" : name,
+        "team_score" : int(request.data)
+        }
+        mongo.db.leaderboard.insert_one(team_entry)
+        return '', 200
 
 @app.route("/info")
 def info():
