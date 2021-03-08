@@ -1,11 +1,9 @@
-var timeleft = 500;
-var elem = document.getElementById('question-time');
-var timerId
+var timeleft = 30;
 
 function startgame() {
     score = 0;
     $("#start-button").remove();
-    timerId = setInterval(countdown, 1000);
+    clock();
     $("#question-time").toggle();
     $("#question-box").css({'background-color': '#2aa167'})
     options = [ question1answer, question1option1, question1option2, question1option3 ];
@@ -21,6 +19,7 @@ function startgame() {
 }
 
 function q2(answerclicked) {
+  timeleft = 30;
     if (answerclicked === question1answer) {
         score++;
     }
@@ -336,32 +335,31 @@ function q24(answerclicked) {
     document.getElementById('question-text').innerHTML =("<h1 id='thequestion'>" + question24 + "</h1>");
     options24 = [ question24answer, question24option1, question24option2, question24option3 ];
     options24 .sort();
-    document.getElementById('answer-box1').innerHTML = ("<h2><button type='button' class='answer' onclick='endgame(this.innerHTML)'>" + options24[0] + "</button></h2>");
-    document.getElementById('answer-box2').innerHTML = ("<h2><button type='button' class='answer' onclick='endgame(this.innerHTML)'>" + options24[1] + "</button></h2>");
-    document.getElementById('answer-box3').innerHTML = ("<h2><button type='button' class='answer' onclick='endgame(this.innerHTML)'>" + options24[2] + "</button></h2>");
-    document.getElementById('answer-box4').innerHTML = ("<h2><button type='button' class='answer' onclick='endgame(this.innerHTML)'>" + options24[3] + "</button></h2>");
+    document.getElementById('answer-box1').innerHTML = ("<h2><button type='button' class='answer' onclick='endGame(this.innerHTML)'>" + options24[0] + "</button></h2>");
+    document.getElementById('answer-box2').innerHTML = ("<h2><button type='button' class='answer' onclick='endGame(this.innerHTML)'>" + options24[1] + "</button></h2>");
+    document.getElementById('answer-box3').innerHTML = ("<h2><button type='button' class='answer' onclick='endGame(this.innerHTML)'>" + options24[2] + "</button></h2>");
+    document.getElementById('answer-box4').innerHTML = ("<h2><button type='button' class='answer' onclick='endGame(this.innerHTML)'>" + options24[3] + "</button></h2>");
     document.getElementById('q').innerHTML = ("24 of 24");
 }
 
 function clock() {
+  var timeLeft = 500;
   clearTimeout(timerId);
+    var elem = document.getElementById('question-time');
+    var timerId = setInterval(countdown, 1000);
 
-
-
-
-  }
-
-  function countdown() {
-    if (timeLeft == -1) {
-      clearTimeout(timerId);
-      endgame(false)
-    } else {
-      elem.innerHTML = timeLeft + ' seconds remaining';
-      timeLeft--;
+    function countdown() {
+      if (timeLeft == -1) {
+        clearTimeout(timerId);
+        endGame(false)
+      } else {
+        elem.innerHTML = timeLeft + ' seconds remaining';
+        timeLeft--;
+      }
     }
   }
 
-function endgame(answerclicked) {
+function endGame(answerclicked) {
     if (answerclicked === question24answer) {
         score++;
     }
