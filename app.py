@@ -136,6 +136,7 @@ def create_quiz():
                 mongo.db.activeQuizes.insert_one(name)
                 resp = make_response(redirect(url_for('quiz', quizid=quizid)))
                 resp.set_cookie('team', selectedTeamName)
+                resp.set_cookie('url', selectedQuizName)
 
                 return resp
 
@@ -156,7 +157,9 @@ def get_leaderboard():
 def quiz(quizid):
     quiz = mongo.db.activeQuizes.find_one({"quizname": quizid})
     name = request.cookies.get('team')
-    return render_template("quiz.html", quiz = quiz, name = name)
+    url = request.cookies.get('url')
+    print = (name, url)
+    return render_template("quiz.html", quiz = quiz, name = name, url = url)
 
 def delete_old_quiz():
     threading.Timer(600.0, delete_old_quiz).start()
