@@ -1,6 +1,5 @@
 # StaticWickedQuiz
 
-Description
 The StaticWicked Quiz from StaticWickedCats is a Quiz-based game. 
 This is made in celebration of St.Patrick's Day on 17th March. Moreover to bring a sense of community and «togetherness» during a difficult time (Covid). 
 Furthermore to make it so we all can test our knowledge of this day, including the traditions and culture of Ireland in a fun way, as well of the use of video chatting platforms, and gamification to enhance the experience. 
@@ -24,8 +23,9 @@ This section is also where you would share links to any wireframes, mockups, dia
 ### 1.3. Design Choices
 
 - **Colours**: 
-* The colors used were shades of green, while having some specific details in a color of blue, purple, orange and pink, to link with the St. Patrick's Day theme, our main logo and give it a feel of a game. 
-* Details: 
+The colors used were shades of green, while having some specific details in a color of blue, purple, orange and pink, to link with the St. Patrick's Day theme, our main logo and give it a feel of a game. 
+
+Details: 
 
 	-Main Colors being used: #2AA167, #2FB675, #96F09E
 
